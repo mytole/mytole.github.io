@@ -1,0 +1,17 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+#loading-res {  
+    display: none;
+    font-size: 18px;
+}
+
+.result{
+    border-left: 3px solid rgb(0, 119, 255);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+    
+}
+
+.result b{
+    float:right;
+}
