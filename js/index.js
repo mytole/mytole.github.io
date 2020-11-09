@@ -1,11 +1,3 @@
-const vars = {
-    sInput: document.getElementById("search-input"),
-    sBtn: document.getElementById("button-addon2"),
-    showSpinner: function (spinner) { spinner.style.display = "inline-block"; },
-    hideSpinner: function (spinner) { spinner.style.display = "none"; },
-    searchSpinner: document.getElementById("loading-res"),
-    resultsRow: document.getElementById("results")
-}
 
 vars.sBtn.addEventListener('click', () => {
     let userInput = vars.sInput.value;
@@ -22,7 +14,8 @@ vars.sBtn.addEventListener('click', () => {
                 spaceCol.classList.add("w-100");
                 vars.resultsRow.appendChild(currentCol);
                 vars.resultsRow.appendChild(spaceCol);
-                currentCol.innerHTML = `${data[i].name} <b>(${data[i].symbol})</b>`;
+                let url = "company.html?symbol="+data[i].symbol;
+                currentCol.innerHTML = `<a href=${url}>${data[i].name} <b>(${data[i].symbol})</b></a>`;
             }
 
         })

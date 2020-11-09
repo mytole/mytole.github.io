@@ -15,3 +15,50 @@ body{
 .result b{
     float:right;
 }
+
+#company-spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+    width: 8rem;
+    height: 8rem;
+}
+
+#comp-name b{
+    font-size: 22px;
+   
+}
+
+#comp-des p{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-left: 4px solid gray;
+}
+
+#comp-change{
+    font-weight: bold;
+}
+
+
+
+canvas{
+    max-height: 900px;
+    
+}
+
+@media (min-width: 560.98px) {
+    #comp-image{
+        margin-right:3rem;
+    }
+    #comp-name b{
+        font-size: 22px;
+        position: absolute;
+        bottom: 45%;
+        left:3%;
+    }
+    
+}
