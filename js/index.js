@@ -15,10 +15,17 @@ vars.sBtn.addEventListener('click', () => {
                 vars.resultsRow.appendChild(currentCol);
                 vars.resultsRow.appendChild(spaceCol);
                 let url = "company.html?symbol="+data[i].symbol;
-                currentCol.innerHTML = `<a href=${url}>${data[i].name} <b>(${data[i].symbol})</b></a>`;
+                getProfile2(data[i].symbol).then(ful=>{
+                    currentCol.innerHTML = `<img src="${ful.profile.image}" width="40" height="40"><a href=${url}>${data[i].name} <b>(${data[i].symbol})</b> <span id="${data[i].symbol}">${ful.profile.changesPercentage}</span></a>`;
+                    if(ful.profile.changesPercentage.charAt(1)==='+') document.getElementById(data[i].symbol).style.color = '#0ddd83';
+                    else document.getElementById(data[i].symbol).style.color = 'red';
+                })
+                
+                
             }
 
         })
     })
 
 })
+

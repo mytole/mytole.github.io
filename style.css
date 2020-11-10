@@ -12,8 +12,8 @@ body{
     
 }
 
-.result b{
-    float:right;
+.result span{
+    float: right;
 }
 
 #company-spinner{

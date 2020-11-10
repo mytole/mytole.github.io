@@ -1,7 +1,10 @@
-const compSymbol = vars.urlParams.get('symbol');
-
-fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${compSymbol}`).then(response =>{
+const cVars= {
+    compSymbol: vars.urlParams.get('symbol'),
+    chart: document.getElementById('myChart').getContext('2d')
+}
+getProfile(cVars.compSymbol).then(response =>{
     response.json().then(data=>{
+        console.log(data);
         let compImage = data.profile.image;
         let compName = data.profile.companyName;
         let compPrice = data.profile.price;
@@ -18,9 +21,9 @@ fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/ap
     })
 });
 
-fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${compSymbol}?serietype=line`).then(response =>{
+fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${cVars.compSymbol}?serietype=line`).then(response =>{
     response.json().then(data=>{
-        console.log(data);
+        
         let chartData = data.historical;
         let chartYears = [];
         let chartClose = [];
@@ -29,7 +32,7 @@ fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/ap
             chartClose.push(e.close);
         }); 
    
-        let myChart = new Chart(vars.chart , {
+        let myChart = new Chart(cVars.chart , {
             type: 'line',
             data: {
                 labels: chartYears,
