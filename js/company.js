@@ -4,7 +4,7 @@ const cVars= {
 }
 getProfile(cVars.compSymbol).then(data =>{
     
-        
+        document.getElementById('title').innerHTML = cVars.compSymbol;
         let compImage = data.profile.image;
         let compName = data.profile.companyName;
         let compPrice = data.profile.price;
