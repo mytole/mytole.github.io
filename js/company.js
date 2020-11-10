@@ -2,9 +2,9 @@ const cVars= {
     compSymbol: vars.urlParams.get('symbol'),
     chart: document.getElementById('myChart').getContext('2d')
 }
-getProfile(cVars.compSymbol).then(response =>{
-    response.json().then(data=>{
-        console.log(data);
+getProfile(cVars.compSymbol).then(data =>{
+    
+        
         let compImage = data.profile.image;
         let compName = data.profile.companyName;
         let compPrice = data.profile.price;
@@ -18,7 +18,7 @@ getProfile(cVars.compSymbol).then(response =>{
         if(compChange.charAt(1)==='+') vars.compChangeCol.style.color = '#0ddd83';
         else vars.compChangeCol.style.color = 'red';
         vars.compDesCol.innerHTML = `<p>${compDes}</p>`;
-    })
+    
 });
 
 fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${cVars.compSymbol}?serietype=line`).then(response =>{
@@ -27,7 +27,7 @@ fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/ap
         let chartData = data.historical;
         let chartYears = [];
         let chartClose = [];
-        data.historical.forEach(e=> {
+        chartData.forEach(e=> {
             chartYears.push(e.date);
             chartClose.push(e.close);
         }); 

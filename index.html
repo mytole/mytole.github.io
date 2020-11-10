@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="./imgs/bar-chart.svg"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
+    <div class="marquee">
+        <ul class="marquee-content" id="marquee-content">
+           
+        </ul>
+    </div>
     <div class="container-fluid">
         <div class="row search">
-            <div class="col-sm-12 col-md-8 search w-90 mx-auto pt-5">
+            <div class="col-12 search-header text-center mt-3"><h1>Nasdaq Stocks Search</h1></div> 
+            <div class="col-sm-12 col-md-8 search w-90 mx-auto pt-2">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" id="search-input">
                     <div class="input-group-append">
