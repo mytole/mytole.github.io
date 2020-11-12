@@ -51,8 +51,10 @@ canvas{
 }
 
 .search-header h1{
-    text-decoration: underline;
+    
     font-size: 32px;
+    font-weight: 600;
+    margin: 20px 0px;
 }
 
 .marquee{
@@ -64,16 +66,18 @@ canvas{
 }
 
 .marquee-content{
+    
     list-style: none;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: scrolling 50s linear infinite;
+    animation: scrolling 100s linear infinite;
     
 }
 
 .marquee-content li{
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,8 +89,8 @@ canvas{
 }
 
 @keyframes scrolling{
-    0%{transform: translateX(100vh);}
-    100%{transform: translateX(-300vh);}
+    0%{transform: translateX(300vw);}
+    100%{transform: translateX(-200vw);}
 }
 
 @media (min-width: 560.98px) {

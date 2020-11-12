@@ -29,3 +29,8 @@ vars.sBtn.addEventListener('click', () => {
 
 })
 
+const marquee = new Marquee(vars.marquee);
+marquee.getMarqueeData();
+
+
+
