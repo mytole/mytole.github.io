@@ -2,7 +2,7 @@ class Marquee {
     constructor(element){
         this.marqElement = element;
     }
-    getMarqueeData(){
+    load(){
         fetch('https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/stock/list').then(response=>{
     response.json().then(data=>{
         data.splice(50, data.length-50);

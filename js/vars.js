@@ -1,7 +1,6 @@
 const vars = {
+    searchForm: document.getElementById("form"),
     marquee: document.getElementById("marquee-content"),
-    sInput: document.getElementById("search-input"),
-    sBtn: document.getElementById("button-addon2"),
     compImageCol: document.getElementById("comp-image"),
     compNameCol: document.getElementById("comp-name"),
     compPriceCol: document.getElementById("comp-price"),
@@ -14,9 +13,7 @@ const vars = {
     resultsRow: document.getElementById("results"),
     urlParams: new URLSearchParams(window.location.search)
 }
-//https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/stock/list
-
-async function getProfile(symbol){ 
+async function getProfile(symbol) {
     let response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${symbol}`);
     let data = await response.json();
     return data;
