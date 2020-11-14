@@ -23,7 +23,7 @@ class SearchResult {
     renderResults(userInput1){
         let userInput = userInput1;
         let resultsCols = document.querySelectorAll('.result');
-        this.showSpinner(this.spinner);//spiner fix
+        this.showSpinner(this.spinner);
         resultsCols.forEach( col=>col.remove());
         fetch('https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=' + userInput + '&limit=10&exchange=NASDAQ').then(response => {
             response.json().then(data => {
@@ -37,7 +37,17 @@ class SearchResult {
                     this.element.appendChild(spaceCol);
                     let url = "company.html?symbol="+data[i].symbol;
                     getProfile(data[i].symbol).then(ful=>{
-                        currentCol.innerHTML = `<img src="${ful.profile.image}" width="40" height="40"><a href=${url}>${data[i].name} <b>(${data[i].symbol})</b> <span id="${data[i].symbol}">${ful.profile.changesPercentage}</span></a>`;
+                        currentCol.innerHTML = `<img src="${ful.profile.image}" width="40" height="40"><a href=${url}><span id="cName${data[i].symbol}">${data[i].name}</span> <b id="${data[i].symbol}${i}">(${data[i].symbol})</b> <span class="res-float" id="${data[i].symbol}">${ful.profile.changesPercentage}</span></a>`;
+                        let userInputUp = userInput.toUpperCase();
+                        let lightSymb = document.getElementById(`${data[i].symbol}${i}`);
+                        if(lightSymb.innerHTML.indexOf(userInputUp)!==-1){
+                            lightSymb.innerHTML = lightSymb.innerHTML.substring(0, lightSymb.innerHTML.indexOf(userInputUp))+"<span class='highlight'>" + lightSymb.innerHTML.substring(lightSymb.innerHTML.indexOf(userInputUp), lightSymb.innerHTML.indexOf(userInputUp)+userInputUp.length) + "</span>" + lightSymb.innerHTML.substring(lightSymb.innerHTML.indexOf(userInputUp)+userInputUp.length);
+                        }
+                        let lightName = document.getElementById(`cName${data[i].symbol}`);
+                        let copyInnerUpper = lightName.innerHTML.toUpperCase();
+                        if(copyInnerUpper.indexOf(userInputUp)!==-1){
+                            lightName.innerHTML = lightName.innerHTML.substring(0, copyInnerUpper.indexOf(userInputUp))+"<span class='highlight'>" + lightName.innerHTML.substring(copyInnerUpper.indexOf(userInputUp), copyInnerUpper.indexOf(userInputUp)+userInputUp.length) + "</span>" + lightName.innerHTML.substring(copyInnerUpper.indexOf(userInputUp)+userInputUp.length);
+                        }
                         if(ful.profile.changesPercentage.charAt(1)==='+') document.getElementById(data[i].symbol).style.color = '#0ddd83';
                         else document.getElementById(data[i].symbol).style.color = 'red';
                     })

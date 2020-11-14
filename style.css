@@ -12,7 +12,7 @@ body{
     
 }
 
-.result span{
+.res-float{
     float: right;
 }
 
@@ -86,6 +86,10 @@ canvas{
     flex-shrink: 0;
     white-space: nowrap;
     
+}
+
+.highlight {
+    background-color: yellow;
 }
 
 @keyframes scrolling{
