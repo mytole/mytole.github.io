@@ -20,6 +20,7 @@ class SearchResult {
     }
     showSpinner(spinner) { spinner.style.display = "inline-block"; }
     hideSpinner(spinner) { spinner.style.display = "none"; }
+    onCompare(company){console.log(company)}
     renderResults(userInput1){
         let userInput = userInput1;
         let resultsCols = document.querySelectorAll('.result');
@@ -37,7 +38,10 @@ class SearchResult {
                     this.element.appendChild(spaceCol);
                     let url = "company.html?symbol="+data[i].symbol;
                     getProfile(data[i].symbol).then(ful=>{
+                        
                         currentCol.innerHTML = `<img src="${ful.profile.image}" width="40" height="40"><a href=${url}><span id="cName${data[i].symbol}">${data[i].name}</span> <b id="${data[i].symbol}${i}">(${data[i].symbol})</b> <span class="res-float" id="${data[i].symbol}">${ful.profile.changesPercentage}</span></a>`;
+                        currentCol.innerHTML += `<button type="button" id="${data[i].symbol}c" class="btn btn-info compare">Compare</button>`;
+                        document.getElementById(`${data[i].symbol}c`).addEventListener('click', ()=>{this.onCompare(ful.profile)})
                         let userInputUp = userInput.toUpperCase();
                         let lightSymb = document.getElementById(`${data[i].symbol}${i}`);
                         if(lightSymb.innerHTML.indexOf(userInputUp)!==-1){
@@ -50,6 +54,7 @@ class SearchResult {
                         }
                         if(ful.profile.changesPercentage.charAt(1)==='+') document.getElementById(data[i].symbol).style.color = '#0ddd83';
                         else document.getElementById(data[i].symbol).style.color = 'red';
+
                     })
                     
                     
