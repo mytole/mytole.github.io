@@ -1,5 +1,5 @@
 class SearchResult {
-    constructor(element){
+    constructor(element) {
         this.element = element;
         this.spinner = document.createElement('div');
         this.spinAtr1 = document.createAttribute('class');
@@ -20,12 +20,12 @@ class SearchResult {
     }
     showSpinner(spinner) { spinner.style.display = "inline-block"; }
     hideSpinner(spinner) { spinner.style.display = "none"; }
-    onCompare(company){console.log(company)}
-    renderResults(userInput1){
+    onCompare(company) { console.log(company) }
+    renderResults(userInput1) {
         let userInput = userInput1;
         let resultsCols = document.querySelectorAll('.result');
         this.showSpinner(this.spinner);
-        resultsCols.forEach( col=>col.remove());
+        resultsCols.forEach(col => col.remove());
         fetch('https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=' + userInput + '&limit=10&exchange=NASDAQ').then(response => {
             response.json().then(data => {
                 this.hideSpinner(this.spinner);
@@ -36,32 +36,32 @@ class SearchResult {
                     spaceCol.classList.add("w-100");
                     this.element.appendChild(currentCol);
                     this.element.appendChild(spaceCol);
-                    let url = "company.html?symbol="+data[i].symbol;
-                    getProfile(data[i].symbol).then(ful=>{
-                        
+                    let url = "company.html?symbol=" + data[i].symbol;
+                    getProfile(data[i].symbol).then(ful => {
+
                         currentCol.innerHTML = `<img src="${ful.profile.image}" width="40" height="40"><a href=${url}><span id="cName${data[i].symbol}">${data[i].name}</span> <b id="${data[i].symbol}${i}">(${data[i].symbol})</b> <span class="res-float" id="${data[i].symbol}">${ful.profile.changesPercentage}</span></a>`;
                         currentCol.innerHTML += `<button type="button" id="${data[i].symbol}c" class="btn btn-info compare">Compare</button>`;
-                        document.getElementById(`${data[i].symbol}c`).addEventListener('click', ()=>{this.onCompare(ful.profile)})
+                        document.getElementById(`${data[i].symbol}c`).addEventListener('click', () => { this.onCompare(ful.profile) })
                         let userInputUp = userInput.toUpperCase();
                         let lightSymb = document.getElementById(`${data[i].symbol}${i}`);
-                        if(lightSymb.innerHTML.indexOf(userInputUp)!==-1){
-                            lightSymb.innerHTML = lightSymb.innerHTML.substring(0, lightSymb.innerHTML.indexOf(userInputUp))+"<span class='highlight'>" + lightSymb.innerHTML.substring(lightSymb.innerHTML.indexOf(userInputUp), lightSymb.innerHTML.indexOf(userInputUp)+userInputUp.length) + "</span>" + lightSymb.innerHTML.substring(lightSymb.innerHTML.indexOf(userInputUp)+userInputUp.length);
+                        if (lightSymb.innerHTML.indexOf(userInputUp) !== -1) {
+                            lightSymb.innerHTML = lightSymb.innerHTML.substring(0, lightSymb.innerHTML.indexOf(userInputUp)) + "<span class='highlight'>" + lightSymb.innerHTML.substring(lightSymb.innerHTML.indexOf(userInputUp), lightSymb.innerHTML.indexOf(userInputUp) + userInputUp.length) + "</span>" + lightSymb.innerHTML.substring(lightSymb.innerHTML.indexOf(userInputUp) + userInputUp.length);
                         }
                         let lightName = document.getElementById(`cName${data[i].symbol}`);
                         let copyInnerUpper = lightName.innerHTML.toUpperCase();
-                        if(copyInnerUpper.indexOf(userInputUp)!==-1){
-                            lightName.innerHTML = lightName.innerHTML.substring(0, copyInnerUpper.indexOf(userInputUp))+"<span class='highlight'>" + lightName.innerHTML.substring(copyInnerUpper.indexOf(userInputUp), copyInnerUpper.indexOf(userInputUp)+userInputUp.length) + "</span>" + lightName.innerHTML.substring(copyInnerUpper.indexOf(userInputUp)+userInputUp.length);
+                        if (copyInnerUpper.indexOf(userInputUp) !== -1) {
+                            lightName.innerHTML = lightName.innerHTML.substring(0, copyInnerUpper.indexOf(userInputUp)) + "<span class='highlight'>" + lightName.innerHTML.substring(copyInnerUpper.indexOf(userInputUp), copyInnerUpper.indexOf(userInputUp) + userInputUp.length) + "</span>" + lightName.innerHTML.substring(copyInnerUpper.indexOf(userInputUp) + userInputUp.length);
                         }
-                        if(ful.profile.changesPercentage.charAt(1)==='+') document.getElementById(data[i].symbol).style.color = '#0ddd83';
+                        if (ful.profile.changesPercentage.charAt(1) === '+') document.getElementById(data[i].symbol).style.color = '#0ddd83';
                         else document.getElementById(data[i].symbol).style.color = 'red';
 
                     })
-                    
-                    
+
+
                 }
 
             })
         })
-        
+
     }
 }

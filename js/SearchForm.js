@@ -1,5 +1,5 @@
 class Search {//spiner put in search result
-    constructor(element){
+    constructor(element) {
         this.element = element;
         this.inputGrp = document.createElement('div');
         this.inputGrpAtr = document.createAttribute('class');
@@ -46,9 +46,9 @@ class Search {//spiner put in search result
         this.sBtn.append(this.icon);
         this.inputGrp.append(this.input, this.divGrp);
     }
-    onSearch(callback){  
+    onSearch(callback) {
         this.element.append(this.inputGrp);
         this.sBtn.addEventListener('click', callback);
     }
-    
+
 }
