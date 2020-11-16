@@ -13,6 +13,7 @@ const vars = {
     resultsRow: document.getElementById("results"),
     urlParams: new URLSearchParams(window.location.search)
 }
+
 async function getProfile(symbol) {
     let response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${symbol}`);
     let data = await response.json();
