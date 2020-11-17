@@ -12,6 +12,14 @@ body{
     
 }
 
+.show-alert {
+    display: block;
+}
+
+.hide-alert {
+    display: none;
+}
+
 .compare{
     float: right;
 }
@@ -90,6 +98,36 @@ canvas{
 
 .highlight {
     background-color: yellow;
+}
+
+#companies-compare{
+    float:right;
+}
+
+#compare-container{
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    
+    
+
+}
+
+#compare-wrapper{
+   display: inline-block;
+    max-width: 80%;
+    max-height: 100%;
+    margin: 0;
+}
+
+.compared {
+    width: 120px!important;
+    height: 40px!important;
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #17a2b8;
+    color: white;
+    border-radius: 5px;
+    
 }
 
 @keyframes scrolling{

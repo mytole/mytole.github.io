@@ -17,10 +17,27 @@ class SearchResult {
         this.spinnerInnerDiv.setAttributeNode(this.spinnerInnerAtr2);
         this.spinner.append(this.spinnerInnerDiv);
         this.element.append(this.spinner);
+        this.comparedCount = 0;
     }
     showSpinner(spinner) { spinner.style.display = "inline-block"; }
     hideSpinner(spinner) { spinner.style.display = "none"; }
-    onCompare(company) { console.log(company) }
+ /*    onCompare( symbol) {
+        this.comparedCount++;
+        const compareCon = document.getElementById('compare-wrapper');
+        if(this.comparedCount<=3){
+            let compDiv = document.createElement('div');
+            compDiv.classList.add('compared');
+            compDiv.innerHTML = `<div class="alert alert-primary alert-dismissible fade show compared" role="alert">
+            ${symbol}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>`;
+            compareCon.append(compDiv);
+            
+        }
+        
+    } */
     renderResults(userInput1) {
         let userInput = userInput1;
         let resultsCols = document.querySelectorAll('.result');
@@ -33,7 +50,7 @@ class SearchResult {
                     let currentCol = document.createElement("div");
                     let spaceCol = document.createElement("div");
                     currentCol.classList.add("col-sm-10", "col-md-6", "w-20", "mx-auto", "result", "p-3");
-                    spaceCol.classList.add("w-100");
+                    spaceCol.classList.add("w-100"); //space between cols for bootsrap
                     this.element.appendChild(currentCol);
                     this.element.appendChild(spaceCol);
                     let url = "company.html?symbol=" + data[i].symbol;
@@ -41,7 +58,7 @@ class SearchResult {
 
                         currentCol.innerHTML = `<img src="${ful.profile.image}" width="40" height="40"><a href=${url}><span id="cName${data[i].symbol}">${data[i].name}</span> <b id="${data[i].symbol}${i}">(${data[i].symbol})</b> <span class="res-float" id="${data[i].symbol}">${ful.profile.changesPercentage}</span></a>`;
                         currentCol.innerHTML += `<button type="button" id="${data[i].symbol}c" class="btn btn-info compare">Compare</button>`;
-                        document.getElementById(`${data[i].symbol}c`).addEventListener('click', () => { this.onCompare(ful.profile) })
+                        Compare.compareResultListen(`${data[i].symbol}c`);
                         let userInputUp = userInput.toUpperCase();
                         let lightSymb = document.getElementById(`${data[i].symbol}${i}`);
                         if (lightSymb.innerHTML.indexOf(userInputUp) !== -1) {

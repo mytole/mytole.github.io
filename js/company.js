@@ -74,7 +74,7 @@ class CompanyInfo {
         
         });
     }
-    addChart() {
+    loadChart() {
         fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${this.symbol}?serietype=line`).then(response => {
             response.json().then(data => {
                 let chartData = data.historical;
@@ -84,6 +84,8 @@ class CompanyInfo {
                     chartYears.push(e.date);
                     chartClose.push(e.close);
                 });
+                chartYears.reverse();
+                chartClose.reverse();
 
                 let myChart = new Chart(this.ccCanvas, {
                     type: 'line',
@@ -97,7 +99,18 @@ class CompanyInfo {
                     },
                     options: {
                         aspectRatio: 1,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    
+                                    min: 0,
+                                    stepSize: 5
+                                }
+                            }]
+                        },
+                        position: 'right',
                     }
+                        
                 });
 
             })
@@ -107,4 +120,4 @@ class CompanyInfo {
 
 const compInfo = new CompanyInfo(document.getElementById("compInfo"), cVars.symbol);
 compInfo.load();
-compInfo.addChart();
+compInfo.loadChart();
