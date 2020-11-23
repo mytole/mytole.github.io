@@ -21,23 +21,6 @@ class SearchResult {
     }
     showSpinner(spinner) { spinner.style.display = "inline-block"; }
     hideSpinner(spinner) { spinner.style.display = "none"; }
- /*    onCompare( symbol) {
-        this.comparedCount++;
-        const compareCon = document.getElementById('compare-wrapper');
-        if(this.comparedCount<=3){
-            let compDiv = document.createElement('div');
-            compDiv.classList.add('compared');
-            compDiv.innerHTML = `<div class="alert alert-primary alert-dismissible fade show compared" role="alert">
-            ${symbol}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>`;
-            compareCon.append(compDiv);
-            
-        }
-        
-    } */
     renderResults(userInput1) {
         let userInput = userInput1;
         let resultsCols = document.querySelectorAll('.result');
